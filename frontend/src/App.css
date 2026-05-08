@@ -1,0 +1,104 @@
+/* Configuración General */
+:root {
+  --azul-principal: #2c3e50;
+  --azul-claro: #3498db;
+  --blanco: #ffffff;
+  --gris-fondo: #f4f7f6;
+  --rojo-alerta: #e74c3c;
+  --verde-exito: #27ae60;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--gris-fondo);
+  color: var(--azul-principal);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Contenedor de Tarjetas */
+.card {
+  background: var(--blanco);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+h2, h3 {
+  color: var(--azul-claro);
+  margin-bottom: 1.5rem;
+}
+
+/* Estilos de Formulario */
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-sizing: border-box; /* Importante para que el padding no sature el ancho */
+  font-size: 1rem;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--azul-claro);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+/* Estilos para las Alertas */
+.alerta-item {
+  background: #fff5f5;
+  border-left: 5px solid var(--rojo-alerta);
+  padding: 10px;
+  margin: 10px 0;
+  list-style: none;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+}
+
+.stock-bajo {
+  font-weight: bold;
+  color: var(--rojo-alerta);
+}
+.tabla-reporte {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.9rem;
+}
+
+.tabla-reporte th {
+    background-color: var(--azul-principal);
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+.tabla-reporte td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.tabla-reporte tr:hover {
+    background-color: #f1f1f1;
+}
