@@ -16,17 +16,17 @@ export default function AgregarCategoria() {
         e.preventDefault();
         try {
             await api.post('/categorias', categoria);
-            setMensaje('✅ Categoría agregada correctamente.');
+            setMensaje('Categoría agregada correctamente.');
             // Limpiar formulario
             setCategoria({ nombre: '' });
         } catch (error) {
-            setMensaje('❌ Error: ' + (error.response?.data?.error || 'No se pudo guardar'));
+            setMensaje('Error: ' + (error.response?.data?.error || 'No se pudo guardar'));
         }
     };
 
     return (
         <div className="card categoria-card">
-            <h3>📂 Registro de Nueva Categoría</h3>
+            <h3>Registro de Nueva Categoría</h3>
             <form onSubmit={guardarCategoria}>
                 <label>Nombre de la Categoría:</label>
                 <input

@@ -26,7 +26,7 @@ export default function Ventas() {
     const realizarVenta = async (e) => {
         e.preventDefault();
         
-        // ESTRUCTURA QUE PIDE TU CONTROLLER:
+        
         const datosVenta = {
             cliente_nombre: cliente,
             productos: [
@@ -40,7 +40,7 @@ export default function Ventas() {
         try {
             const res = await api.post('/ventas', datosVenta);
             const producto = productosDB.find(p => p.id === parseInt(productoSeleccionado));
-            setMensaje(`✅ ${res.data.mensaje}. Total: S/. ${res.data.total}`);
+            setMensaje(` ${res.data.mensaje}. Total: S/. ${res.data.total}`);
             setVentaRealizada({
                 cliente,
                 producto: producto?.nombre || 'Producto',
@@ -49,18 +49,18 @@ export default function Ventas() {
                 total: res.data.total,
                 fecha: new Date().toLocaleString()
             });
-            setMostrarBoleta(true);
+            setMostrarBoleta(false);
             setProductoSeleccionado('');
             setCantidad(1);
         } catch (error) {
             console.error(error);
-            setMensaje('❌ Error: ' + (error.response?.data?.error || 'Revisa que los campos coincidan con tu BD'));
+            setMensaje(' Error: ' + (error.response?.data?.error || 'Revisa que los campos coincidan con tu BD'));
         }
     };
 
     return (
         <div className="card ventas-card">
-            <h3>Nueva Venta - Nova Salud</h3>
+            <h2 className="page-title">💰 Nueva Venta</h2>
             <form onSubmit={realizarVenta}>
                 <label>Nombre del Cliente:</label>
                 <input 
@@ -132,14 +132,6 @@ export default function Ventas() {
                 </div>
             )}
 
-            <div className="button-row">
-                <button type="button" className="btn btn-secondary btn-inline" onClick={() => window.location.href = '/alertas'}>
-                    Ver Alertas de Stock
-                </button>
-                <button type="button" className="btn btn-info btn-inline" onClick={() => window.location.href = '/reportes'}>
-                    Ver Reportes
-                </button>
-            </div>
         </div>
     );
 }

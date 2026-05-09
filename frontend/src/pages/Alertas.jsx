@@ -14,7 +14,7 @@ export default function Alertas() {
       setMensaje('');
     } catch (error) {
       console.error("Error al traer alertas", error);
-      setMensaje('❌ No se pudo cargar las alertas.');
+      setMensaje('No se pudo cargar las alertas.');
     } finally {
       setCargando(false);
     }
@@ -44,11 +44,11 @@ export default function Alertas() {
         stock_minimo: data.stock_minimo
       };
       await api.put(`/productos/${producto.id}`, payload);
-      setMensaje('✅ Producto actualizado correctamente.');
+      setMensaje('Producto actualizado correctamente.');
       await obtenerAlertas();
     } catch (error) {
       console.error('Error al actualizar producto:', error);
-      setMensaje('❌ No se pudo actualizar el producto.');
+      setMensaje('No se pudo actualizar el producto.');
     }
   };
 
@@ -60,13 +60,13 @@ export default function Alertas() {
   return (
     <div className="card alertas-card">
       <div className="page-header">
-        <h3>🚀 Panel de Control - Nova Salud</h3>
+        <h3>Panel de Control - Nova Salud</h3>
         <button type="button" className="btn btn-secondary btn-inline" onClick={cerrarSesion}>Salir</button>
       </div>
 
       <hr />
 
-      <h4>⚠️ Alertas de Reposición</h4>
+      <h4>Alertas de Reposición</h4>
       {mensaje && <p className="mensaje-status">{mensaje}</p>}
       {cargando ? (
         <p>Consultando inventario...</p>

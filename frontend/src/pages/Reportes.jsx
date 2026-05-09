@@ -22,7 +22,7 @@ export default function Reportes() {
 
     return (
         <div className="card reportes-card">
-            <h3>📊 Historial Detallado de Ventas</h3>
+            <h3>Historial Detallado de Ventas</h3>
             
             {cargando ? (
                 <p>Cargando datos...</p>
