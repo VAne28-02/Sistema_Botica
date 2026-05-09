@@ -10,6 +10,7 @@ app.use(express.json());
 
 // Rutas
 app.use('/api/productos', require('./routes/productosRoutes'));
+app.use('/api/categorias', require('./routes/categoriasRoutes'));
 app.use('/api/ventas', require('./routes/ventasRoutes'));
 
 // Cambia esto en index.js

@@ -99,6 +99,176 @@ button:hover {
     text-align: left;
 }
 
+.tabla-reporte button {
+    width: auto;
+    padding: 8px 12px;
+    margin: 0;
+    min-width: 90px;
+}
+
 .tabla-reporte tr:hover {
     background-color: #f1f1f1;
+}
+
+.productos-page {
+  max-width: 1200px;
+  width: 95%;
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.productos-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.productos-title {
+  margin: 0;
+  color: var(--azul-principal);
+}
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.productos-panel {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.productos-panel-title {
+  margin-top: 0;
+  color: var(--azul-principal);
+}
+
+.productos-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: var(--azul-principal);
+}
+
+.productos-form input,
+.productos-form select,
+.productos-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.productos-form textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.productos-form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.productos-form-row > div {
+  flex: 1;
+}
+
+.productos-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.productos-button-primary {
+  background-color: var(--azul-principal);
+  color: white;
+}
+
+.productos-button-primary:hover {
+  background-color: #1f2d3c;
+}
+
+.productos-button-secondary {
+  background-color: #95a5a6;
+  color: white;
+  margin-top: 10px;
+}
+
+.productos-button-secondary:hover {
+  background-color: #7f8c8d;
+}
+
+.productos-message {
+  margin-top: 15px;
+  padding: 12px;
+  background-color: #e8f5e9;
+  border-radius: 6px;
+  border-left: 4px solid var(--verde-exito);
+  color: var(--azul-principal);
+  font-weight: bold;
+}
+
+.productos-table-wrapper {
+  overflow-x: auto;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.productos-table {
+  width: 100%;
+}
+
+.productos-action-buttons {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.productos-action-button {
+  min-width: 80px;
+  padding: 8px 12px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.productos-action-button.edit {
+  background-color: var(--azul-claro);
+}
+
+.productos-action-button.edit:hover {
+  background-color: #2980b9;
+}
+
+.productos-action-button.delete {
+  background-color: #e74c3c;
+}
+
+.productos-action-button.delete:hover {
+  background-color: #c0392b;
+}
+
+.productos-no-data {
+  text-align: center;
 }
