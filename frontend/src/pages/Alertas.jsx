@@ -58,25 +58,25 @@ export default function Alertas() {
   };
 
   return (
-    <div className="card" style={{ maxWidth: '600px' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <div className="card alertas-card">
+      <div className="page-header">
         <h3>🚀 Panel de Control - Nova Salud</h3>
-        <button onClick={cerrarSesion} style={{ width: 'auto', padding: '5px 10px', backgroundColor: '#95a5a6' }}>Salir</button>
+        <button type="button" className="btn btn-secondary btn-inline" onClick={cerrarSesion}>Salir</button>
       </div>
 
       <hr />
 
       <h4>⚠️ Alertas de Reposición</h4>
-      {mensaje && <p style={{ marginTop: '10px' }}>{mensaje}</p>}
+      {mensaje && <p className="mensaje-status">{mensaje}</p>}
       {cargando ? (
         <p>Consultando inventario...</p>
       ) : productosBajos.length === 0 ? (
-        <p style={{ color: 'var(--verde-exito)' }}>✅ Todo el stock está en niveles óptimos.</p>
+        <p className="mensaje-status">✅ Todo el stock está en niveles óptimos.</p>
       ) : (
-        <div style={{ textAlign: 'left' }}>
+        <div className="page-section">
           <p>Los siguientes productos están por debajo del stock mínimo:</p>
           {productosBajos.map(p => (
-            <div key={p.id} className="alerta-item" style={{ alignItems: 'center' }}>
+            <div key={p.id} className="alerta-item">
               <div>
                 <strong>{p.nombre}</strong>
                 <div className="stock-bajo">
@@ -85,16 +85,8 @@ export default function Alertas() {
               </div>
               <button
                 type="button"
+                className="btn btn-success btn-small btn-inline"
                 onClick={() => actualizarProducto(p)}
-                style={{
-                  backgroundColor: '#27ae60',
-                  color: 'white',
-                  border: 'none',
-                  borderRadius: '6px',
-                  padding: '8px 12px',
-                  cursor: 'pointer',
-                  minWidth: '100px'
-                }}
               >
                 Actualizar
               </button>
@@ -103,30 +95,20 @@ export default function Alertas() {
         </div>
       )}
       
-      <button 
-        onClick={() => window.location.href = '/productos'}
-        style={{ marginTop: '20px', backgroundColor: '#27ae60' }}
-      >
-        Gestionar Productos
-      </button>
-      <button 
-        onClick={() => window.location.href = '/agregar-categoria'}
-        style={{ marginTop: '10px', backgroundColor: '#e74c3c' }}
-      >
-        Nueva Categoría
-      </button>
-      <button 
-        onClick={() => window.location.href = '/ventas'} 
-        style={{ marginTop: '10px', backgroundColor: 'var(--azul-principal)' }}
-      >
-        Ir a Registrar Venta
-      </button>
-      <button 
-        onClick={() => window.location.href = '/reportes'} 
-        style={{ marginTop: '10px', backgroundColor: '#8e44ad' }}
-      >
-        Ver Reportes
-      </button>
+      <div className="button-row">
+        <button type="button" className="btn btn-success btn-inline" onClick={() => window.location.href = '/productos'}>
+          Gestionar Productos
+        </button>
+        <button type="button" className="btn btn-danger btn-inline" onClick={() => window.location.href = '/agregar-categoria'}>
+          Nueva Categoría
+        </button>
+        <button type="button" className="btn btn-primary btn-inline" onClick={() => window.location.href = '/ventas'}>
+          Ir a Registrar Venta
+        </button>
+        <button type="button" className="btn btn-info btn-inline" onClick={() => window.location.href = '/reportes'}>
+          Ver Reportes
+        </button>
+      </div>
     </div>
   );
 }

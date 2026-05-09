@@ -8,6 +8,8 @@ export default function Ventas() {
     const [productoSeleccionado, setProductoSeleccionado] = useState('');
     const [cantidad, setCantidad] = useState(1);
     const [mensaje, setMensaje] = useState('');
+    const [ventaRealizada, setVentaRealizada] = useState(null);
+    const [mostrarBoleta, setMostrarBoleta] = useState(false);
 
     useEffect(() => {
         const traerProductos = async () => {
@@ -37,7 +39,17 @@ export default function Ventas() {
 
         try {
             const res = await api.post('/ventas', datosVenta);
+            const producto = productosDB.find(p => p.id === parseInt(productoSeleccionado));
             setMensaje(`✅ ${res.data.mensaje}. Total: S/. ${res.data.total}`);
+            setVentaRealizada({
+                cliente,
+                producto: producto?.nombre || 'Producto',
+                cantidad: parseInt(cantidad),
+                precioUnitario: producto?.precio_venta || 0,
+                total: res.data.total,
+                fecha: new Date().toLocaleString()
+            });
+            setMostrarBoleta(true);
             setProductoSeleccionado('');
             setCantidad(1);
         } catch (error) {
@@ -47,7 +59,7 @@ export default function Ventas() {
     };
 
     return (
-        <div className="card" style={{ maxWidth: '500px' }}>
+        <div className="card ventas-card">
             <h3>Nueva Venta - Nova Salud</h3>
             <form onSubmit={realizarVenta}>
                 <label>Nombre del Cliente:</label>
@@ -80,19 +92,54 @@ export default function Ventas() {
                     onChange={(e) => setCantidad(e.target.value)} 
                 />
 
-                <button type="submit" style={{ backgroundColor: 'var(--verde-exito)', marginTop: '10px' }}>
+                <button type="submit" className="btn btn-success">
                     Confirmar Venta
                 </button>
             </form>
 
             {mensaje && <p className="mensaje-status">{mensaje}</p>}
 
-            <button onClick={() => window.location.href = '/alertas'} style={{ marginTop: '10px', backgroundColor: '#95a5a6' }}>
-                Ver Alertas de Stock
+            <button
+                type="button"
+                className={`btn btn-primary ${ventaRealizada ? '' : 'btn-disabled'}`}
+                onClick={() => setMostrarBoleta(true)}
+                disabled={!ventaRealizada}
+            >
+                Generar Boleta
             </button>
-            <button onClick={() => window.location.href = '/reportes'} style={{ marginTop: '10px', backgroundColor: '#8e44ad' }}>
-                Ver Reportes
-            </button>
+
+            {mostrarBoleta && ventaRealizada && (
+                <div className="modal-overlay">
+                    <div className="modal-card">
+                        <h2>Boleta de Venta</h2>
+                        <div className="modal-details">
+                            <p><strong>Cliente:</strong> {ventaRealizada.cliente}</p>
+                            <p><strong>Fecha:</strong> {ventaRealizada.fecha}</p>
+                            <p><strong>Producto:</strong> {ventaRealizada.producto}</p>
+                            <p><strong>Cantidad:</strong> {ventaRealizada.cantidad}</p>
+                            <p><strong>Precio unitario:</strong> S/. {ventaRealizada.precioUnitario}</p>
+                            <p className="detalle-total">Total a pagar: S/. {ventaRealizada.total}</p>
+                        </div>
+                        <div className="modal-actions">
+                            <button type="button" className="btn btn-primary btn-inline" onClick={() => window.print()}>
+                                Imprimir
+                            </button>
+                            <button type="button" className="btn btn-muted btn-inline" onClick={() => setMostrarBoleta(false)}>
+                                Cerrar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            <div className="button-row">
+                <button type="button" className="btn btn-secondary btn-inline" onClick={() => window.location.href = '/alertas'}>
+                    Ver Alertas de Stock
+                </button>
+                <button type="button" className="btn btn-info btn-inline" onClick={() => window.location.href = '/reportes'}>
+                    Ver Reportes
+                </button>
+            </div>
         </div>
     );
 }

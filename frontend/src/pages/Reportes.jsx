@@ -21,13 +21,13 @@ export default function Reportes() {
     }, []);
 
     return (
-        <div className="card" style={{ maxWidth: '1000px', width: '95%' }}>
+        <div className="card reportes-card">
             <h3>📊 Historial Detallado de Ventas</h3>
             
             {cargando ? (
                 <p>Cargando datos...</p>
             ) : (
-                <div style={{ overflowX: 'auto' }}>
+                <div className="table-container">
                     {/* IMPORTANTE: Usar la clase que definiste en el CSS */}
                     <table className="tabla-reporte">
                         <thead>
@@ -48,13 +48,13 @@ export default function Reportes() {
                                         <td>{new Date(f.fecha_venta).toLocaleString()}</td>
                                         <td>{f.cliente_nombre}</td>
                                         <td>{f.medicamento}</td>
-                                        <td style={{ textAlign: 'center' }}>{f.cantidad}</td>
-                                        <td style={{ fontWeight: 'bold' }}>S/. {f.subtotal}</td>
+                                        <td className="text-center">{f.cantidad}</td>
+                                        <td className="font-bold">S/. {f.subtotal}</td>
                                     </tr>
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="6" style={{ textAlign: 'center' }}>No hay ventas registradas.</td>
+                                    <td colSpan="6" className="text-center">No hay ventas registradas.</td>
                                 </tr>
                             )}
                         </tbody>
@@ -62,11 +62,11 @@ export default function Reportes() {
                 </div>
             )}
 
-            <div style={{ marginTop: '20px', display: 'flex', gap: '10px', justifyContent: 'center' }}>
-                <button onClick={() => window.location.href = '/ventas'}>
+            <div className="button-row">
+                <button type="button" className="btn btn-primary btn-inline" onClick={() => window.location.href = '/ventas'}>
                     Nueva Venta
                 </button>
-                <button onClick={() => window.location.href = '/alertas'} style={{ backgroundColor: '#95a5a6' }}>
+                <button type="button" className="btn btn-secondary btn-inline" onClick={() => window.location.href = '/alertas'}>
                     Ver Alertas
                 </button>
             </div>

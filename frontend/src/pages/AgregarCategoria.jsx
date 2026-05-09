@@ -25,7 +25,7 @@ export default function AgregarCategoria() {
     };
 
     return (
-        <div className="card" style={{ maxWidth: '500px' }}>
+        <div className="card categoria-card">
             <h3>📂 Registro de Nueva Categoría</h3>
             <form onSubmit={guardarCategoria}>
                 <label>Nombre de la Categoría:</label>
@@ -38,16 +38,16 @@ export default function AgregarCategoria() {
                     required
                 />
 
-                <button type="submit" style={{ backgroundColor: 'var(--azul-principal)', marginTop: '15px' }}>
+                <button type="submit" className="btn btn-primary">
                     Guardar Categoría
                 </button>
             </form>
 
             {mensaje && <p className="mensaje-status">{mensaje}</p>}
 
-            <div style={{ marginTop: '20px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-                <button onClick={() => window.location.href = '/productos'} style={{ backgroundColor: '#95a5a6' }}>Productos</button>
-                <button onClick={() => window.location.href = '/alertas'} style={{ backgroundColor: '#95a5a6' }}>Panel Alertas</button>
+            <div className="button-row">
+                <button type="button" className="btn btn-secondary btn-inline" onClick={() => window.location.href = '/productos'}>Productos</button>
+                <button type="button" className="btn btn-secondary btn-inline" onClick={() => window.location.href = '/alertas'}>Panel Alertas</button>
             </div>
         </div>
     );
