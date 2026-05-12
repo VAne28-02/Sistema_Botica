@@ -71,7 +71,7 @@ export default function Alertas() {
       {cargando ? (
         <p>Consultando inventario...</p>
       ) : productosBajos.length === 0 ? (
-        <p className="mensaje-status">✅ Todo el stock está en niveles óptimos.</p>
+        <p className="mensaje-status">Todo el stock está en niveles óptimos.</p>
       ) : (
         <div className="page-section">
           <p>Los siguientes productos están por debajo del stock mínimo:</p>

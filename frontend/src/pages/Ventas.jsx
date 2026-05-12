@@ -60,7 +60,7 @@ export default function Ventas() {
 
     return (
         <div className="card ventas-card">
-            <h2 className="page-title">💰 Nueva Venta</h2>
+            <h2 className="page-title"> Nueva Venta</h2>
             <form onSubmit={realizarVenta}>
                 <label>Nombre del Cliente:</label>
                 <input 

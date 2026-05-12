@@ -1,12 +1,12 @@
 const pool = require('../config/db');
 
 const registrarVenta = async (req, res) => {
-    const { cliente_nombre, productos } = req.body; // productos es un array de { producto_id, cantidad }
+    const { cliente_nombre, productos } = req.body; 
 
     try {
-        await pool.query('BEGIN'); // Iniciamos la transacción
+        await pool.query('BEGIN'); 
 
-        // 1. Crear la cabecera de la venta
+
         const ventaRes = await pool.query(
             'INSERT INTO ventas (cliente_nombre) VALUES ($1) RETURNING id',
             [cliente_nombre]
@@ -15,36 +15,36 @@ const registrarVenta = async (req, res) => {
 
         let totalVenta = 0;
 
-        // 2. Procesar cada producto de la venta
+        
         for (const p of productos) {
-            // Obtenemos precio y stock actual
+            
             const prodRes = await pool.query('SELECT precio_venta, stock_actual FROM productos WHERE id = $1', [p.producto_id]);
             const producto = prodRes.rows[0];
 
             const subtotal = producto.precio_venta * p.cantidad;
             totalVenta += subtotal;
 
-            // Insertamos en detalle_ventas
+            
             await pool.query(
                 'INSERT INTO detalle_ventas (venta_id, producto_id, cantidad, subtotal) VALUES ($1, $2, $3, $4)',
                 [ventaId, p.producto_id, p.cantidad, subtotal]
             );
 
-            // ACTUALIZACIÓN DE STOCK: Restamos lo vendido
+            
             await pool.query(
                 'UPDATE productos SET stock_actual = stock_actual - $1 WHERE id = $2',
                 [p.cantidad, p.producto_id]
             );
         }
 
-        // 3. Actualizamos el total en la tabla ventas
+    
         await pool.query('UPDATE ventas SET total_venta = $1 WHERE id = $2', [totalVenta, ventaId]);
 
-        await pool.query('COMMIT'); // Guardamos todo
+        await pool.query('COMMIT'); // 
         res.status(201).json({ mensaje: 'Venta registrada y stock actualizado', ventaId, total: totalVenta });
 
     } catch (err) {
-        await pool.query('ROLLBACK'); // Si algo falla, deshacemos los cambios
+        await pool.query('ROLLBACK'); 
         console.error(err);
         res.status(500).json({ error: 'Error al procesar la venta' });
     }

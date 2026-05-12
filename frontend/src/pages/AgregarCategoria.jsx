@@ -17,7 +17,7 @@ export default function AgregarCategoria() {
         try {
             await api.post('/categorias', categoria);
             setMensaje('Categoría agregada correctamente.');
-            // Limpiar formulario
+            
             setCategoria({ nombre: '' });
         } catch (error) {
             setMensaje('Error: ' + (error.response?.data?.error || 'No se pudo guardar'));

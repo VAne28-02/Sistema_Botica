@@ -1,6 +1,6 @@
 const pool = require('../config/db');
 
-// 1. Función para obtener todos los productos
+
 const obtenerProductos = async (req, res) => {
     try {
         const result = await pool.query(
@@ -16,7 +16,6 @@ const obtenerProductos = async (req, res) => {
     }
 };
 
-// 2. Función para obtener producto por id
 const obtenerProductoPorId = async (req, res) => {
     const { id } = req.params;
     try {
@@ -31,7 +30,7 @@ const obtenerProductoPorId = async (req, res) => {
     }
 };
 
-// 3. Función para crear producto
+
 const crearProducto = async (req, res) => {
     const { categoria_id, nombre, descripcion, precio_venta, stock_actual, stock_minimo } = req.body;
     try {
@@ -46,7 +45,7 @@ const crearProducto = async (req, res) => {
     }
 };
 
-// 4. Función para actualizar producto
+
 const actualizarProducto = async (req, res) => {
     const { id } = req.params;
     const { categoria_id, nombre, descripcion, precio_venta, stock_actual, stock_minimo } = req.body;
@@ -65,7 +64,7 @@ const actualizarProducto = async (req, res) => {
     }
 };
 
-// 5. Función para eliminar producto
+
 const eliminarProducto = async (req, res) => {
     const { id } = req.params;
     try {

@@ -1,6 +1,5 @@
 const pool = require('../config/db');
 
-// 1. Función para obtener todas las categorías
 const obtenerCategorias = async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM categorias ORDER BY nombre ASC');
@@ -11,7 +10,6 @@ const obtenerCategorias = async (req, res) => {
     }
 };
 
-// 2. Función para crear una nueva categoría
 const crearCategoria = async (req, res) => {
     const { nombre } = req.body;
     try {

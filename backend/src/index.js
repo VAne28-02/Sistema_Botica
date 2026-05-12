@@ -4,16 +4,15 @@ require('dotenv').config();
 
 const app = express();
 
-// Middlewares para agilizar la atención [cite: 36]
 app.use(cors());
 app.use(express.json());
 
-// Rutas
+
 app.use('/api/productos', require('./routes/productosRoutes'));
 app.use('/api/categorias', require('./routes/categoriasRoutes'));
 app.use('/api/ventas', require('./routes/ventasRoutes'));
 
-// Cambia esto en index.js
+
 const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
 

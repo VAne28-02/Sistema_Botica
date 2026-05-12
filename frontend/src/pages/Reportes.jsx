@@ -28,7 +28,7 @@ export default function Reportes() {
                 <p>Cargando datos...</p>
             ) : (
                 <div className="table-container">
-                    {/* IMPORTANTE: Usar la clase que definiste en el CSS */}
+                    
                     <table className="tabla-reporte">
                         <thead>
                             <tr>

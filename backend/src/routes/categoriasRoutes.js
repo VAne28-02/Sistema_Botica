@@ -6,7 +6,7 @@ const {
     crearCategoria
 } = require('../controllers/categoriasController');
 
-// Rutas para categorías
+
 router.get('/', obtenerCategorias);
 router.post('/', crearCategoria);
 
