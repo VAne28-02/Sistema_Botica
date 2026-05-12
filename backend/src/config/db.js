@@ -9,5 +9,4 @@ const pool = new Pool({
     port: process.env.DB_PORT,
 });
 
-// ESTA LÍNEA ES LA MÁS IMPORTANTE
 module.exports = pool;
